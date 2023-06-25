@@ -11,7 +11,7 @@ So Ensure you maintain a good and descriptive readme.nd file to facilitate other
 
 ### Github is a remote control version control system.
 
-### Common Git :
+### Common Git commands:
 
 ...
 $ git clone repURL.git                           ; clones or download the repository from GitHub
