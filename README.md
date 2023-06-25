@@ -6,7 +6,6 @@ So Ensure you maintain a good and descriptive readme.nd file to facilitate other
 
 
 ### Git is a version control system and using this we can save our code and version control it.
-
 ### git a local version system
 
 ### Github is a remote control version control system.
