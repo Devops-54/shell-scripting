@@ -19,4 +19,14 @@ c=30
 
 # Syntax : $variableName : $ is going to print the value of the variable
 echo $a
-echo value of the variable is $a
+echo -e "Value of the variable a is \e[32m $a \e[0m"
+echo -e "Value of the variavle b is \e[32m $b \e[0m"
+echo -e "Value of the variable c is \e[32m $c \e[0m"
+echo -e "Value of the variable d is \e[32m $d \e[0m"
+
+echo "value of the variable d is ${d}"
+# If you try to print a variable that is not declared, bash will consider that as a null rather an error
+
+# rm -rf /data/${FOLDER_TO_DELETE}/ => rm -rf /data
+
+
