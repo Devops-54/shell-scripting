@@ -11,9 +11,16 @@ sample() {
     echo "I am a sample function with name sample"
     echo "I am executing the sample function"
     echo "sample function is completed"
+}
 
+status() {
+    echo -e "Good Morning and todays date is \e[32m $(date +%F)  \e[0m"
+    echo -e "Number of opened sessions : \e[32m $(who | wc -l) \e[0m"    
 }
 
 # This is now you can call a function
 
 sample
+
+# calling status function
+status
