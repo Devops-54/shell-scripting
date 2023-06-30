@@ -7,10 +7,14 @@
  # whenever you want to use some block of code n number of times, rather writing n number of times, you can declare it as a function and can call it on need basis
 
 # Declaring a function
+
 sample() {
     echo "I am a sample function with name sample"
     echo "I am executing the sample function"
     echo "sample function is completed"
+
+    echo "calling Status Function"
+    status
 }
 
 status() {
