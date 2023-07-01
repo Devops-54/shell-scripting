@@ -27,3 +27,5 @@ case $ACTION in
         echo -e "\e[36m Possible values are start or stop or restart only \e[0m"
         exit 3
         ;;
+
+esac
