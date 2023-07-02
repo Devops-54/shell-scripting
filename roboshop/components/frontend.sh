@@ -1,7 +1,9 @@
 #!/bin/bash
 
+COMPONENT=frontend
+
 echo "Installing Nginx :"
-yum install nginx -y
+yum install nginx -y  &>> "/tmp/${COMPONENT}.log"
 
 #The frontend is the service in RobotShop to serve the web content over Nginx.
 
