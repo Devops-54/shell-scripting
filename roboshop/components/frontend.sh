@@ -40,6 +40,12 @@ rm -rf ${COMPONENT}-main README.md
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 stat $?
 
+
+echo -n "Starting $COMPONENT service: "
+systemctl enable nginx  &>> $LOGFILE
+systemctl start nginx   &>> $LOGFILE
+stat $?
+
 #The frontend is the service in RobotShop to serve the web content over Nginx.
 
 #Install Nginx.
