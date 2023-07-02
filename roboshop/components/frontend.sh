@@ -27,7 +27,7 @@ else
     echo -e "\e[31m failure \e[0m"
 fi
 
-echo -n "Performing Cleanup: "
+echo -n "Performing Cleanup:"
 cd /usr/share/nginx/html
 rm -rf *  &>> "/tmp/${COMPONENT}.log"
 
