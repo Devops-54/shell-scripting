@@ -21,6 +21,12 @@ fi
 echo -n "Downloading the frontend component  :"
 curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
 
+if [ $? -eq 0 ] ; then
+    echo -e "\e[32m success \e[0m"
+else
+    echo -e "\e[31m failure \e[0m"
+fi
+
 #The frontend is the service in RobotShop to serve the web content over Nginx.
 
 #Install Nginx.
