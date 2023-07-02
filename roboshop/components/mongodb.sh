@@ -37,25 +37,25 @@ systemctl enable mongod      &>> $LOGFILE
 systemctl restart mongod     &>> $LOGFILE
 stat $?
 
+echo -n "Downloading the $COMPONENT schema:"
+curl -s -L -o /tmp/mongodb.zip "https://github.com/stans-robot-project/mongodb/archive/main.zip"
+stat $?
+
+echo -n "Extracting the $COMPONENT Schema:"
+cd /tmp
+unzip -o mongodb.zip   &>> $LOGFILE 
+stat $?
+
+echo -n "Injecting the schema:"
+cd $COMPONENT-main
+mongo < catalogue.js       &>> $LOGFILE 
+mongo < users.js           &>> $LOGFILE 
+stat $?
 
 
 
 
 
-# 1. Setup MongoDB repos.
 
-# ```bash
-# curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/stans-robot-project/mongodb/main/mongo.repo
-# ```
 
-# 1. Install Mongo & Start Service.
 
-# ```
-# Setup MongoDB repos.
-
-# ```bash
-# curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/stans-robot-project/mongodb/main/mongo.repo
-# ```
-
-# Install Mongo & Start Service.
-# ```
