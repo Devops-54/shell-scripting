@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 COMPONENT=catalogue
 LOGFILE="/tmp/${COMPONENT}.log"
 
@@ -24,4 +23,12 @@ echo -e "*********** \e[35m $COMPONENT Installation has started \e[0m **********
 
 echo -n  "Configuring the $COMPONENT repo :"
 curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -  &>> $LOGFILE
+stat $?
+
+echo -n "Installing NodeJS :"
+yum install nodejs -y  &>> $LOGFILE
+stat $?
+
+echo -n "Creating the service Account :"
+useradd roboshop
 stat $?
