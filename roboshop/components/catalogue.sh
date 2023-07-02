@@ -43,5 +43,5 @@ stat $?
 
 echo -n "Copying the $COMPONENT to $APPUSER home directory :"
 cd /home/{$APPUSER}/
-unzip /tmp/catalogue.zip  &>> $LOGFILE
+unzip -o /tmp/catalogue.zip  &>> $LOGFILE
 stat $?
