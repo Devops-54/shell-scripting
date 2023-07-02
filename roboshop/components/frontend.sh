@@ -19,6 +19,8 @@ stat() {
     fi
 }
 
+echo -e "*********** \e[35m $COMPONENT Installation has started \e[0m ***********"
+
 echo "Installing Nginx :"
 yum install nginx -y  &>> $LOGFILE
 stat $?
@@ -45,6 +47,8 @@ echo -n "Starting $COMPONENT service: "
 systemctl enable nginx  &>> $LOGFILE
 systemctl start nginx   &>> $LOGFILE
 stat $?
+
+echo -e "*********** \e[35m $COMPONENT Installation is completed \e[0m ***********"
 
 #The frontend is the service in RobotShop to serve the web content over Nginx.
 
