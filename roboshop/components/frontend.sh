@@ -11,7 +11,7 @@ if [ $ID -ne 0 ] ; then
 fi
 
 stat() {
-    if [ $? -eq 0 ] ; then
+    if [ $1 -eq 0 ] ; then
         echo -e "\e[32m success \e[0m"
     else
         echo -e "\e[31m failure \e[0m"
@@ -25,7 +25,7 @@ echo -n "Installing Nginx :"
 yum install nginx -y  &>> $LOGFILE
 stat $?
 
-echo -n "Downloading the ${COMPONENT} component  :"
+echo -n "Downloading the ${COMPONENT} component :"
 curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
 stat $?
 
@@ -34,7 +34,7 @@ cd /usr/share/nginx/html
 rm -rf *  &>> $LOGFILE
 stat $?
 
-echo -n "Extracting ${COMPOMENT} component :"
+echo -n "Extracting ${COMPONENT} component :"
 unzip /tmp/${COMPONENT}.zip  &>> $LOGFILE
 mv $COMPONENT-main/*  .
 mv static/* .
