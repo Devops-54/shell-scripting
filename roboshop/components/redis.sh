@@ -11,7 +11,7 @@ curl -s -L https://raw.githubusercontent.com/stans-robot-project/${COMPONENT}/ma
 stat $?
 
 echo -n "Installing $COMPONENT : "
-yum install -y ${COMPONENT}-6.2.11  &>> $LOGFILE
+yum install -y $COMPONENT-6.2.11  &>> $LOGFILE
 stat $?
 
 echo -n "Enabling the DB visibility :"
