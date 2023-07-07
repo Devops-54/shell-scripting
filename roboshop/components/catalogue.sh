@@ -5,16 +5,3 @@ COMPONENT=catalogue
 source components/common.sh
 
 NODEJS                  # Calling Nodejs function
-
-
-
-
-
-
-
-
-
-
-
-
-
