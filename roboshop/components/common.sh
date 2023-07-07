@@ -95,5 +95,8 @@ NODEJS() {
 
     NPM_INSTALL                 # Creates artifact  
 
+    
+    CONFIGURE_SVC               # Configuring the service.
+
 
 }
