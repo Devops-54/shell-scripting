@@ -7,7 +7,7 @@ source components/common.sh
 echo -e "*********** \e[35m $COMPONENT Installation has started \e[0m ***********"
 
 echo -n  "Configuring the $COMPONENT repo :"
-curl -s -L https://raw.githubusercontent.com/stans-robot-project/${COMPONENT}/main${COMPONENT}redis.repo -o /etc/yum.repos.d/${COMPONENT}.repo
+curl -s -L https://raw.githubusercontent.com/stans-robot-project/${COMPONENT}/main/${COMPONENT}.repo -o /etc/yum.repos.d/${COMPONENT}.repo
 stat $?
 
 echo -n "Installing $COMPONENT : "
