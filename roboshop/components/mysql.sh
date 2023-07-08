@@ -4,6 +4,8 @@ COMPONENT="mysql"
 
 source components/common.sh
 
+echo -e "*********** \e[35m $COMPONENT Installation has started \e[0m ***********"
+
 echo -n "Configuring the $COMPONENT repo: "
 curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/stans-robot-project/mysql/main/mysql.repo
 stat $?
@@ -34,7 +36,25 @@ if [ $? -eq 0 ] ; then
     echo -n "Uninstalling the validate_password plugin :"
     echo "UNINSTALL PLUGIN validate_password;" | mysql -uroot -pRoboShop@1   &>> $LOGFILE
     stat $?
-fi 
+fi
+
+
+echo -n "Downloading the $COMPONENT schema:"
+curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
+stat $? 
+
+echo -n "Extracting the $COMPONENT Schema:"
+cd /tmp  
+unzip -o /tmp/${COMPONENT}.zip   &>> $LOGFILE
+stat $? 
+
+echo -n "Injecting the $COMPONENT Schema :"
+cd ${COMPONENT}-main 
+mysql -u root -pRoboShop@1 <shipping.sql &>> $LOGFILE
+stat $? 
+
+
+echo -e "*********** \e[35m $COMPONENT Installation has Completed \e[0m ***********"
 
 
 
