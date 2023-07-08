@@ -61,7 +61,7 @@ NPM_INSTALL() {
 CONFIGURE_SVC() {
 
     echo -n "Updating the $COMPONENT systemd file :"
-    sed -i -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/${APPUSER}/${COMPONENT}/systemd.service    
+    sed -i -e 's/DBHOST/mysql.roboshop.internal/' -e 's/CARTENDPOINT/cart.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/${APPUSER}/${COMPONENT}/systemd.service    
     mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
     stat $?
 
@@ -74,12 +74,9 @@ CONFIGURE_SVC() {
     echo -e "*********** \e[35m $COMPONENT Installation is completed \e[0m ***********"
 
 }
-
-    
-
+   
 NODEJS() {
     echo -e "*********** \e[35m $COMPONENT Installation has started \e[0m ***********"
-
 
     echo -n  "Configuring the $COMPONENT repo :"
     curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -  &>> $LOGFILE
@@ -98,5 +95,29 @@ NODEJS() {
     
     CONFIGURE_SVC               # Configuring the service.
 
+}
+
+MVN_PACKAGE() {
+    echo -n "Preparing $COMPONENT artifacts :"
+    cd /home/${APPUSER}/${COMPONENT}
+    mvn clean package   &>> $LOGFILE
+    mv target/shipping-1.0.jar shipping.jar 
+    stat $?
+}
+
+JAVA() {
+    echo -e "*********** \e[35m $COMPONENT Installation has started \e[0m ***********"
+
+    echo -n "Installing Maven  :"
+    yum install maven -y   &>> $LOGFILE 
+    stat $?    
+
+    CREATE_USER                 # calling Create_user function to create the roboshop user account
+
+    DOWNLOAD_AND_EXTRACT        # calling DOWNLOAD_AND_EXTRACT  function download the content
+
+    MVN_PACKAGE
+
+    CONFIGURE_SVC
 
 }
