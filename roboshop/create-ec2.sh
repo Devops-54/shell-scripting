@@ -22,11 +22,11 @@ create_ec2() {
 
         IPADDRESS=$(aws ec2 run-instances  --image-id ${AMI_ID}  --instance-type t3.micro   --security-group-ids $SG_ID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$COMPONENT}]" | jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g')
 
-        echo -e "\e[36m **** Launching $COMPONENT-$ENV Server is completed **** \e[0m"
-        echo -e "Private IP Address of $COMPONENT-$ENV is \e[35m $IPADDRESS \e[0m"
+        echo -e "\e[36m **** Launching $COMPONENT Server is completed **** \e[0m"
+        echo -e "Private IP Address of $COMPONENT is \e[35m $IPADDRESS \e[0m"
         echo -e "\e[36m **** Creating DNS Record for the $COMPONENT : **** \e[0m"
 
-        sed -e "s/COMPONENT/${COMPONENT}-${ENV}/"  -e "s/IPADDRESS/${IPADDRESS}/" route53.json > /tmp/record.json
+        sed -e "s/COMPONENT/${COMPONENT}-${COMPONENT}/"  -e "s/IPADDRESS/${IPADDRESS}/" route53.json > /tmp/record.json
         aws route53 change-resource-record-sets --hosted-zone-id $HOSTEDZONEID --change-batch file:///tmp/record.json
 
          echo -e "\e[36m **** Creating DNS Record for the $COMPONENT has completed **** \e[0m \n\n"
